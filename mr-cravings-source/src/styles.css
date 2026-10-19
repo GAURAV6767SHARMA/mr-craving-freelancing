@@ -1,0 +1,275 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Mr Cravings design system.
+ * Warm off-white base, charcoal ink, tandoori red-orange accent,
+ * mojito green secondary. All colors in oklch.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-mint: var(--mint);
+  --color-mint-foreground: var(--mint-foreground);
+  --color-ink: var(--ink);
+  --color-ink-foreground: var(--ink-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --shadow-lift: 0 24px 60px -24px oklch(0.2 0.05 40 / 0.35);
+  --shadow-soft: 0 2px 10px -4px oklch(0.2 0.05 40 / 0.2);
+}
+
+:root {
+  --radius: 0.375rem;
+
+  /* #FAF7F2 */
+  --background: oklch(0.973 0.008 78);
+  /* #1C1A17 */
+  --foreground: oklch(0.203 0.006 62);
+
+  --card: oklch(0.995 0.004 90);
+  --card-foreground: oklch(0.203 0.006 62);
+  --popover: oklch(0.995 0.004 90);
+  --popover-foreground: oklch(0.203 0.006 62);
+
+  /* #D8471F tandoori red-orange */
+  --primary: oklch(0.577 0.196 33.5);
+  --primary-foreground: oklch(0.985 0.006 85);
+
+  --secondary: oklch(0.935 0.014 78);
+  --secondary-foreground: oklch(0.203 0.006 62);
+
+  --muted: oklch(0.935 0.014 78);
+  --muted-foreground: oklch(0.47 0.014 62);
+
+  --accent: oklch(0.577 0.196 33.5);
+  --accent-foreground: oklch(0.985 0.006 85);
+
+  /* #3F7A5A mojito green */
+  --mint: oklch(0.507 0.073 156);
+  --mint-foreground: oklch(0.985 0.006 85);
+
+  --ink: oklch(0.176 0.006 62);
+  --ink-foreground: oklch(0.965 0.01 80);
+
+  --destructive: oklch(0.55 0.2 27);
+  --destructive-foreground: oklch(0.985 0.006 85);
+
+  --border: oklch(0.884 0.014 78);
+  --input: oklch(0.884 0.014 78);
+  --ring: oklch(0.577 0.196 33.5);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  .font-display {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+}
+
+/* --- Utilities --- */
+
+@utility eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+@utility btn-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  padding: 0.875rem 1.5rem;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  line-height: 1;
+  transition:
+    transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 260ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 260ms ease;
+  &:hover {
+    transform: scale(1.03);
+  }
+  &:active {
+    transform: scale(0.99);
+  }
+  &:focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 3px;
+  }
+}
+
+@utility btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-primary-foreground);
+  box-shadow: 0 10px 30px -12px oklch(0.577 0.196 33.5 / 0.6);
+  &:hover {
+    box-shadow: 0 16px 40px -12px oklch(0.577 0.196 33.5 / 0.75);
+  }
+}
+
+@utility btn-outline {
+  border: 1.5px solid currentColor;
+  background-color: transparent;
+  color: inherit;
+}
+
+@utility btn-ink {
+  background-color: var(--color-ink);
+  color: var(--color-ink-foreground);
+}
+
+@utility btn-mint {
+  background-color: var(--color-mint);
+  color: var(--color-mint-foreground);
+}
+
+@utility btn-whatsapp {
+  background-color: oklch(0.65 0.17 152);
+  color: oklch(0.16 0.02 152);
+  box-shadow: 0 10px 30px -12px oklch(0.65 0.17 152 / 0.65);
+  &:hover {
+    box-shadow: 0 16px 40px -12px oklch(0.65 0.17 152 / 0.8);
+  }
+}
+
+@utility btn-zomato {
+  background-color: oklch(0.55 0.2 15);
+  color: oklch(0.99 0.01 15);
+  box-shadow: 0 10px 30px -12px oklch(0.55 0.2 15 / 0.6);
+}
+
+@utility btn-swiggy {
+  background-color: oklch(0.72 0.17 62);
+  color: oklch(0.18 0.03 62);
+  box-shadow: 0 10px 30px -12px oklch(0.72 0.17 62 / 0.6);
+}
+
+@utility whatsapp-glow {
+  animation: whatsapp-glow 2.6s ease-in-out infinite;
+}
+
+@utility pop-in {
+  animation: pop-in 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes whatsapp-glow {
+  0%,
+  100% {
+    box-shadow: 0 10px 30px -12px oklch(0.65 0.17 152 / 0.55);
+  }
+  50% {
+    box-shadow: 0 16px 44px -10px oklch(0.65 0.17 152 / 0.9);
+  }
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .whatsapp-glow,
+  .pop-in {
+    animation: none;
+  }
+}
+
+
+@utility tilt-card {
+  transform-style: preserve-3d;
+  transition:
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 420ms cubic-bezier(0.22, 1, 0.36, 1);
+  &:hover {
+    transform: perspective(900px) rotateX(4deg) rotateY(-7deg) translateY(-6px);
+    box-shadow: var(--shadow-lift);
+  }
+}
+
+@utility reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 560ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 560ms cubic-bezier(0.22, 1, 0.36, 1);
+  &[data-visible="true"] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .tilt-card:hover {
+    transform: none;
+  }
+}
